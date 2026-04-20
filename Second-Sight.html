@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Second Sight</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap + FontAwesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #2c3e50;
+            color: #e0e0e0;
+        }
+
+        .code-block {
+    background-color: #1e1e1e;
+    color: #00ffae;
+    padding: 15px;
+    border-radius: 8px;
+
+    font-family: monospace;
+    font-size: 0.85rem;        
+    line-height: 1.5;          
+
+    max-height: 600px;         
+    overflow-y: auto;         
+    overflow-x: auto;
+
+    border: 1px solid #00ffd5;
+}
+
+        .gif-preview {
+            width: 100%;
+            border-radius: 8px;
+            border: 2px solid #00ffcc;
+        }
+
+        .section-title {
+            color: #00ffd5;
+            font-weight: bold;
+            margin: 60px 0 20px;
+            border-left: 5px solid #00ffd5;
+            padding-left: 15px;
+        }
+
+        .code-description {
+            color: #cccccc;
+            margin-bottom: 20px;
+        }
+
+        .toggle-btn {
+            margin-bottom: 10px;
+            color: #00ffd5;
+            border-color: #00ffd5;
+        }
+
+        .toggle-btn:hover {
+            background-color: #00ffd5;
+            color: #000;
+        }
+
+        .code-gif-pair {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .code-gif-pair.reverse {
+            flex-direction: row-reverse;
+        }
+
+        @media (max-width: 767px) {
+            .code-gif-pair,
+            .code-gif-pair.reverse {
+                flex-direction: column;
+            }
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: #aaa;
+            padding: 40px 0;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container py-5">
+
+    <!-- Title -->
+    <h1 class="text-center mb-4">🎮 Second Sight</h1>
+
+    <!-- Image / Logo -->
+    <div class="text-center mb-5">
+        <img src="assets/img/portfolio/placeholder.png" alt="Project Image" class="img-fluid" style="max-height: 500px;">
+    </div>
+
+    <!-- SECTION TEMPLATE -->
+    <h2 class="section-title">📌 Sockets</h2>
+    <p class="code-description">
+       dit code zorgt ervoor dat de objecten in de sockets blijven en met een script van buiten zorgt ie ervoor dat als de sockets allemaal vol zijn dat ze weer eruit vliegen
+	   naast dat heb ik ook een script moeten maken die checked of the sockets allemaal vol zijn of niet, en dat die een event triggerd als ze allemaal vol zijn zodat ik daar weer andere dingen aan kan koppelen zoals het openen van een deur ofzo.
+    </p>
+
+    <div class="code-gif-pair">
+        <!-- GIF / IMAGE -->
+        <div class="col-md-6">
+            <video class="gif-preview" controls>
+    <source src="assets/img/portfolio/phase2video.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+        </div>
+
+        <!-- CODE BLOCK -->
+        <div class="col-md-6">
+            <button class="btn btn-sm btn-outline-info toggle-btn" onclick="toggleCode('code1')">
+                Show Code
+            </button>
+
+            <div id="code1" style="display: none;">
+                <div class="code-block mt-2">
+<pre><code>using System.Collections;
+using UnityEngine;
+
+namespace SecondSight.Phase2
+{
+	/// <summary>
+	/// this script is responsible for handling the behavior of a socket that can snap objects with a specific tag into place when they enter its trigger area.
+	/// It manages the snapping process, including smoothly moving the object to a designated snap point, disabling physics interactions while snapped, and applying a release force when the object is removed from the socket.
+	/// The script also ensures that only one object can occupy the socket at a time and provides functionality to check if the socket is currently occupied.
+	/// </summary>
+	public class Socket : MonoBehaviour
+	{
+		/// <summary>
+		/// tags and components to snap it to the socket. The object must have the correct tag and a Rigidbody to be snapped in place.
+		/// </summary>
+		[SerializeField]
+		private string _correctTag;
+		/// <summary>
+		/// the transform for the object to snap to.
+		/// </summary>
+		[SerializeField]
+		private Transform _snapPoint;
+		/// <summary>
+		/// the speed it snaps to the snap point.
+		/// </summary>
+		[SerializeField]
+		private float _snapSpeed = 10f;
+		/// <summary>
+		/// the force that is applied when the object is released from the socket.
+		/// </summary>
+		[SerializeField]
+		private float _releaseForce = 5f;
+		/// <summary>
+		/// this causes to give it a little spin for flair when released.
+		/// </summary>
+		[SerializeField]
+		private float _releaseSpin = 1f;
+		/// <summary>
+		/// indicates whether the socket currently holds an object.
+		/// </summary>
+		private bool _isOccupied = false;
+		/// <summary>
+		/// transform of the object currently interacting / snapped to this socket.
+		/// </summary>
+		private Transform _currentObject;
+		/// <summary>
+		/// Represents the coroutine used to perform the snap operation.
+		/// </summary>
+		private Coroutine _snapCoroutine;
+		/// <summary>
+		/// this is to disable the socket collider so any other objects wont interact with it while there is an object snapped in place, and to re-enable it when the object is released.
+		/// </summary>
+		private Collider _socketCollider;
+		/// <summary>
+		/// this bool is to disable the collider so any other objects wont interact with it while there is an object snapped in place, and to re-enable it when the object is released.
+		/// </summary>
+		private bool _socketColliderDisabled;
+		/// <summary>
+		/// Contains the colliders of objects that are currently disabled.
+		/// </summary>
+		private Collider[] _disabledObjectColliders;
+		private const float k_SnapThreshold = 0.01f;
+		private const float k_PostReleaseIgnoreDuration = 0.25f;
+
+		private void Awake()
+		{
+			InitializeCollider();
+		}
+
+		private void OnTriggerEnter(Collider other)
+		{
+			if (!other.CompareTag(_correctTag) || _isOccupied)
+				return;
+
+			Rigidbody rb = other.attachedRigidbody;
+
+			PrepareObjectForSnapping(rb, other);
+		}
+
+		private void OnTriggerExit(Collider other)
+		{
+			if (!other.CompareTag(_correctTag))
+				return;
+
+			HandleTriggerExit(other);
+		}
+
+		/// <summary>
+		/// function to check if the socket is occupied or not, for the socket checker to check if all the sockets are occupied or not.
+		/// </summary>
+		/// <returns></returns>
+		public bool IsOccupied()
+		{
+			return _isOccupied;
+		}
+
+		/// <summary>
+		/// Releases the currently snapped object (restores physics and re-enables colliders/grabbable).
+		/// </summary>
+		public void ReleaseObject()
+		{
+			if (_currentObject == null)
+				return;
+
+			// Stop snapping if running to avoid conflicts with applied velocity.
+			if (_snapCoroutine != null)
+			{
+				StopCoroutine(_snapCoroutine);
+				_snapCoroutine = null;
+			}
+
+			Rigidbody rb = _currentObject.GetComponent<Rigidbody>();
+
+			if (rb != null)
+			{
+				// restore gravity
+				rb.useGravity = true;
+
+				// compute a safe direction away from the snap point
+				Vector3 direction =
+					_currentObject.position
+					- (_snapPoint != null ? _snapPoint.position : transform.position);
+				if (direction.sqrMagnitude < 0.0001f)
+				{
+					// fallback direction if positions coincide
+					direction = transform.forward;
+				}
+				direction.Normalize();
+
+				// apply linear (shoot) and a small angular velocity for spin
+				rb.linearVelocity = direction * _releaseForce;
+				rb.angularVelocity = Random.onUnitSphere * _releaseSpin;
+			}
+
+			// Start coroutine to safely restore colliders and avoid immediate re-trigger
+			StartCoroutine(ReleaseAndRestoreColliders(_currentObject));
+
+			SetGrabbable(_currentObject, true);
+
+			_currentObject = null;
+			_isOccupied = false;
+		}
+
+		/// <summary>
+		/// function to smoothly snap the object to the snap point position and rotation, while disabling the socket collider and the object's colliders during the snap to prevent physics interactions.
+		/// It also makes the object ungrabbable while snapped.
+		/// The coroutine is cached so it can be stopped if the object exits the socket before fully snapping.
+		/// </summary>
+		/// <param name="obj"></param>
+		/// <returns></returns>
+		private IEnumerator SnapObject(Transform obj)
+		{
+			if (obj == null || _snapPoint == null)
+				yield break;
+
+			// rotate 90 degrees to the right relative to the snap point orientation
+			Quaternion targetRotation = _snapPoint.rotation * Quaternion.Euler(0f, 90f, 0f);
+
+			while (
+				obj != null && Vector3.Distance(obj.position, _snapPoint.position) > k_SnapThreshold
+			)
+			{
+				obj.position = Vector3.Lerp(
+					obj.position,
+					_snapPoint.position,
+					Time.deltaTime * _snapSpeed
+				);
+				obj.rotation = Quaternion.Lerp(
+					obj.rotation,
+					targetRotation,
+					Time.deltaTime * _snapSpeed
+				);
+				yield return null;
+			}
+
+			if (obj != null)
+			{
+				obj.position = _snapPoint.position;
+				obj.rotation = targetRotation;
+
+				// disable socket collider and the object's colliders now that it's fully snapped
+				DisableSocketCollider();
+				DisableObjectColliders(obj);
+			}
+
+			// clear coroutine handle
+			_snapCoroutine = null;
+		}
+
+		/// <summary>
+		/// Disable/enable common grab components by name on the object and its children.
+		/// </summary>
+		/// <param name="obj"></param>
+		/// <param name="grabbable"></param>
+		private void SetGrabbable(Transform obj, bool grabbable)
+		{
+			if (obj == null)
+				return;
+
+			Component[] comps = obj.GetComponentsInChildren<Component>(true);
+
+			foreach (var comp in comps)
+			{
+				if (comp == null)
+					continue;
+
+				string tname = comp.GetType().Name;
+
+				if (
+					tname == "XRGrabInteractable"
+					|| tname == "OVRGrabbable"
+					|| tname == "Grabbable"
+					|| tname == "GrabInteractable"
+				)
+				{
+					if (comp is Behaviour b)
+					{
+						b.enabled = grabbable;
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Disable the socket's collider so it no longer triggers while object is snapped.
+		/// </summary>
+		private void DisableSocketCollider()
+		{
+			if (_socketCollider != null && _socketCollider.enabled)
+			{
+				_socketCollider.enabled = false;
+				_socketColliderDisabled = true;
+			}
+		}
+
+		/// <summary>
+		/// gets the collider component of the socket and initializes the state for managing collider interactions during snapping and releasing.
+		/// This is called in Awake to set up the initial state of the socket's collider management.
+		/// </summary>
+		private void InitializeCollider()
+		{
+			_socketCollider = GetComponent<Collider>();
+			_socketColliderDisabled = false;
+			_disabledObjectColliders = null;
+		}
+
+		/// <summary>
+		/// sets the velocity of the object to zero and disables gravity to prepare it for snapping, and also sets the current object reference and occupied state.
+		/// This is called when an object enters the socket trigger and is valid for snapping.
+		/// </summary>
+		/// <param name="rb"></param>
+		/// <param name="other"></param>
+		private void PrepareObjectForSnapping(Rigidbody rb, Collider other)
+		{
+			if (rb != null)
+			{
+				// zero motion using project-specific API
+				rb.linearVelocity = Vector3.zero;
+				rb.angularVelocity = Vector3.zero;
+				rb.useGravity = false;
+			}
+
+			_currentObject = other.transform;
+
+			// Make the object ungrabbable immediately
+			SetGrabbable(other.transform, false);
+
+			_isOccupied = true;
+			_snapCoroutine = StartCoroutine(SnapObject(other.transform));
+		}
+
+		/// <summary>
+		/// checks the state of the socket when an object exits the trigger. If the exiting object is the one currently snapped, it releases it and clears the socket state.
+		/// If it's a different object (e.g., passing through), it ensures that object remains grabbable and doesn't affect the socket's occupied state.
+		/// </summary>
+		/// <param name="other"></param>
+		private void HandleTriggerExit(Collider other)
+		{
+			// Stop any ongoing snap so it won't resume after exit
+			if (_snapCoroutine != null)
+			{
+				StopCoroutine(_snapCoroutine);
+				_snapCoroutine = null;
+			}
+
+			// If the object leaving is the one we were handling, clear socket state.
+			if (_currentObject == other.transform)
+			{
+				SetGrabbable(other.transform, true);
+				_isOccupied = false;
+				_currentObject = null;
+			}
+			else
+			{
+				// Ensure other passing objects remain grabbable
+				SetGrabbable(other.transform, true);
+			}
+		}
+	}
+}
+</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- REVERSE SECTION (optional) -->
+    <h2 class="section-title">Gameplay</h2>
+    <p class="code-description">
+        hier is het algemeen gameplay van de expierence
+    </p>
+
+    <div class="code-gif-pair reverse">
+        <div class="col-md-6">
+            <video width="100%" height="auto" controls>
+                <source src="assets/img/portfolio/Playtest.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="col-md-6">
+            <div id="code2" style="display: none;">
+                <div class="code-block mt-2">
+<pre><code>// Your code here</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BTS / EXTRA -->
+    <h2 class="section-title">🎬 Behind the Scenes</h2>
+    <p class="code-description">
+       we zijn met dit project door veel hobbels gegaan, het opdrachtgever had een heel abstract idee van 2 fases die wij moesten maken, dus wij hebben 2 fases gemaakt: eentje met de swatches en de sockets hierboven en eentje met de voting game die je ziet in de gameplay. de eerste fase moesten we helaas droppen want we hadden niet genoeg mankracht om alles goed te maken in de korte tijd die we hadden en de tweede fase was meer interesant qua techniek omdat we een arduino gebruikten voor die fase.
+    </p>
+
+   
+
+    <!-- Footer -->
+    <footer class="text-center mt-5">
+        <p>© 2026 Youri Wallaart | XR Developer</p>
+        <a href="index.html" class="btn btn-outline-light mt-2">← Back to Portfolio</a>
+    </footer>
+
+</div>
+
+<!-- Script -->
+<script>
+function toggleCode(id) {
+    const codeDiv = document.getElementById(id);
+    const btn = codeDiv.previousElementSibling;
+    const isVisible = codeDiv.style.display === "block";
+
+    codeDiv.style.display = isVisible ? "none" : "block";
+    btn.textContent = isVisible ? "Show Code" : "Hide Code";
+}
+</script>
+
+</body>
+</html>
