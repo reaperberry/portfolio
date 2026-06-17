@@ -193,7 +193,52 @@
         <div class="collapse" id="carCodeExample">
           <pre><code>
 public class CarController : MonoBehaviour {
-    // ... script blijft hetzelfde ...
+    private void FixedUpdate() {
+        if (countDownTimer != null && countDownTimer.currentTime <= 0) {
+            // Get forward/reverse acceleration from vertical axis (W and S)
+            currentAcceleration = acceleration * Input.GetAxis(inputNameVertical);
+
+            // Press Space to brake
+            if (Input.GetButton(inputBrake))
+                currentBrakeForce = brakingForce;
+            else
+                currentBrakeForce = 0;
+
+            // Apply acceleration to front wheels
+            ApplyAcceleration();
+
+            // Apply brakes to all wheels
+            ApplyBrakes();
+
+            // Take care of turning
+            currentTurnAngle = maxTurnAngle * Input.GetAxis(inputNameHorizontal);
+            frontLeft.steerAngle = currentTurnAngle;
+            frontRight.steerAngle = currentTurnAngle;
+
+
+            AddDownForce();
+        }
+    }
+
+    private void ApplyAcceleration() {
+        frontRight.motorTorque = currentAcceleration;
+        frontLeft.motorTorque = currentAcceleration;
+    }
+
+    private void ApplyBrakes() {
+        frontRight.brakeTorque = currentBrakeForce;
+        frontLeft.brakeTorque = currentBrakeForce;
+        backRight.brakeTorque = currentBrakeForce;
+        backLeft.brakeTorque = currentBrakeForce;
+    }
+
+
+    
+
+   private void AddDownForce()
+    {
+        rb.AddForce(-transform.up * DownForceValue * rb.velocity.magnitude);
+    }
 }
           </code></pre>
         </div>
