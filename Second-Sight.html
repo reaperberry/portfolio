@@ -1,128 +1,75 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Second Sight</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<title>Second Sight</title>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<!-- Bootstrap + FontAwesome -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
 
-    <!-- Bootstrap + FontAwesome -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+:root { --blue:#0d6efd; --bg:#101114; --panel:#191c22; --muted:#aeb8c5; }
+html {scroll-behavior:smooth;}
+body {background:var(--bg)!important; color:#e9edf3!important; font-family:Montserrat,Arial,sans-serif!important; padding-top:70px;}
+.navbar {background:rgba(15,17,21,.96)!important; backdrop-filter:blur(12px);}
+a {text-decoration:none;} a:hover {color:#80b8ff;}
+.project-hero {padding:5rem 0 4rem; background:radial-gradient(circle at 75% 35%,rgba(13,110,253,.25),transparent 35%),linear-gradient(125deg,#101827,#090d15); margin-bottom:3rem;}
+.project-hero .eyebrow {color:#80b8ff;letter-spacing:.2em;font-size:.78rem;font-weight:800;}
+.project-hero h1 {font-size:clamp(3.3rem,9vw,7rem);font-weight:900;letter-spacing:-.055em;line-height:1.03;color:white;}
+.project-hero p {color:#c2ccda;max-width:730px;font-size:1.12rem;line-height:1.7;}
+.section-title, .bts-section h2, main h2:not(.accordion-header), .container>h2:not(.portfolio-title) {color:white!important;font-weight:800!important;border:0!important;padding-left:0!important;margin-top:4rem!important;margin-bottom:1.25rem!important;}
+.section-title::before {content:'';display:block;width:48px;height:4px;background:var(--blue);border-radius:3px;margin-bottom:1rem;}
+.code-description, p, li {color:#c2ccda;line-height:1.75;}
+.header-section, .bts-section, .video-wrapper, .panel {background:var(--panel)!important;color:white!important;border:1px solid #292e38!important;border-radius:18px!important;padding:1.6rem!important;box-shadow:none!important;}
+.header-section {font-weight:700;text-align:left!important;}
+pre,.code-block {background:#11151b!important;color:#bcebd7!important;border:1px solid #343b47!important;border-radius:12px!important;padding:1rem!important;max-width:100%!important;overflow-x:auto!important;white-space:pre!important;}
+pre code {color:inherit;}
+.gif-preview, main img, main video, .video-wrapper video {border:1px solid #39465a!important;border-radius:16px!important;max-width:100%;height:auto;}
+.code-video-container,.code-gif-pair {gap:2rem!important;margin-top:2rem!important;margin-bottom:3rem!important;flex-wrap:wrap!important;}
+.code-video-container>div,.code-gif-pair>div {min-width:0;}
+.btn-outline-info,.toggle-btn {color:#80b8ff!important;border-color:#4274ae!important;}
+.btn-outline-info:hover,.toggle-btn:hover {color:white!important;background:#0d6efd!important;border-color:#0d6efd!important;}
+.btn-danger,.btn-success {background:#0d6efd!important;border-color:#0d6efd!important;}
+.media-tags span,.project-tags span {background:#182b45!important;border:1px solid #355a87!important;color:#c7ddfa!important;}
+.portfolio-title,.divider-custom {display:none!important;}
+.divider-custom-line {background:#355a87!important;}
+.accordion-item,.accordion-button,.accordion-body {background:#191c22!important;color:#e9edf3!important;border-color:#343b47!important;}
+.accordion-button:not(.collapsed) {box-shadow:none!important;color:#80b8ff!important;}
+.text-secondary,.text-muted {color:#aeb8c5!important;}
+footer {background:#17191e!important;color:#9da8b6!important;border-radius:16px;padding:2rem!important;margin-top:4rem!important;}
+@media(max-width:767px) {.project-hero{padding:3.5rem 0 2.5rem;} .code-video-container,.code-gif-pair {flex-direction:column!important;} .code-video-container>div,.code-gif-pair>div {width:100%;flex:auto;} }
+</style></head>
+<body><nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow"><div class="container"><a class="navbar-brand fw-bold" href="index.html">Youri Wallaart</a><button aria-controls="projectNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#projectNav" data-bs-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse justify-content-end" id="projectNav"><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="index.html">Portfolio</a></li><li class="nav-item"><a class="nav-link" href="#project-content">Project</a></li></ul></div></div></nav><header class="project-hero"><div class="container"><div class="eyebrow mb-3">XR PROJECT · UNITY</div><h1>Second Sight</h1><p class="mt-4">Project uit mijn XR- en game development portfolio.</p><a class="btn btn-primary btn-lg mt-3" href="#project-content">Bekijk het project <i class="fas fa-arrow-down ms-2"></i></a></div></header>
+<div class="container py-5" id="project-content">
+<!-- Title -->
 
-    <style>
-        body {
-            background-color: #2c3e50;
-            color: #e0e0e0;
-        }
-
-        .code-block {
-    background-color: #1e1e1e;
-    color: #00ffae;
-    padding: 15px;
-    border-radius: 8px;
-
-    font-family: monospace;
-    font-size: 0.85rem;        
-    line-height: 1.5;          
-
-    max-height: 600px;         
-    overflow-y: auto;         
-    overflow-x: auto;
-
-    border: 1px solid #00ffd5;
-}
-
-        .gif-preview {
-            width: 100%;
-            border-radius: 8px;
-            border: 2px solid #00ffcc;
-        }
-
-        .section-title {
-            color: #00ffd5;
-            font-weight: bold;
-            margin: 60px 0 20px;
-            border-left: 5px solid #00ffd5;
-            padding-left: 15px;
-        }
-
-        .code-description {
-            color: #cccccc;
-            margin-bottom: 20px;
-        }
-
-        .toggle-btn {
-            margin-bottom: 10px;
-            color: #00ffd5;
-            border-color: #00ffd5;
-        }
-
-        .toggle-btn:hover {
-            background-color: #00ffd5;
-            color: #000;
-        }
-
-        .code-gif-pair {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .code-gif-pair.reverse {
-            flex-direction: row-reverse;
-        }
-
-        @media (max-width: 767px) {
-            .code-gif-pair,
-            .code-gif-pair.reverse {
-                flex-direction: column;
-            }
-        }
-
-        footer {
-            background-color: #2c3e50;
-            color: #aaa;
-            padding: 40px 0;
-        }
-    </style>
-</head>
-
-<body>
-<div class="container py-5">
-
-    <!-- Title -->
-    <h1 class="text-center mb-4">🎮 Second Sight</h1>
-
-    <!-- Image / Logo -->
-    <div class="text-center mb-5">
-        <img src="assets/img/portfolio/placeholder.png" alt="Project Image" class="img-fluid" style="max-height: 500px;">
-    </div>
-
-    <!-- SECTION TEMPLATE -->
-    <h2 class="section-title">📌 Sockets</h2>
-    <p class="code-description">
+<!-- Image / Logo -->
+<div class="text-center mb-5">
+<img alt="Project Image" class="img-fluid" src="assets/img/portfolio/placeholder.png" style="max-height: 500px;"/>
+</div>
+<!-- SECTION TEMPLATE -->
+<h2 class="section-title">📌 Sockets</h2>
+<p class="code-description">
        dit code zorgt ervoor dat de objecten in de sockets blijven en met een script van buiten zorgt ie ervoor dat als de sockets allemaal vol zijn dat ze weer eruit vliegen
 	   naast dat heb ik ook een script moeten maken die checked of the sockets allemaal vol zijn of niet, en dat die een event triggerd als ze allemaal vol zijn zodat ik daar weer andere dingen aan kan koppelen zoals het openen van een deur ofzo.
     </p>
-
-    <div class="code-gif-pair">
-        <!-- GIF / IMAGE -->
-        <div class="col-md-6">
-            <video class="gif-preview" controls>
-    <source src="assets/img/portfolio/phase2video.mp4" type="video/mp4">
+<div class="code-gif-pair">
+<!-- GIF / IMAGE -->
+<div class="col-md-6">
+<video class="gif-preview" controls="">
+<source src="assets/img/portfolio/phase2video.mp4" type="video/mp4"/>
     Your browser does not support the video tag.
 </video>
-        </div>
-
-        <!-- CODE BLOCK -->
-        <div class="col-md-6">
-            <button class="btn btn-sm btn-outline-info toggle-btn" onclick="toggleCode('code1')">
+</div>
+<!-- CODE BLOCK -->
+<div class="col-md-6">
+<button class="btn btn-sm btn-outline-info toggle-btn" onclick="toggleCode('code1')">
                 Show Code
             </button>
-
-            <div id="code1" style="display: none;">
-                <div class="code-block mt-2">
+<div id="code1" style="display: none;">
+<div class="code-block mt-2">
 <pre><code>using System.Collections;
 using UnityEngine;
 
@@ -234,7 +181,7 @@ namespace SecondSight.Phase2
 				_snapCoroutine = null;
 			}
 
-			Rigidbody rb = _currentObject.GetComponent<Rigidbody>();
+			Rigidbody rb = _currentObject.GetComponent<rigidbody>();
 
 			if (rb != null)
 			{
@@ -245,7 +192,7 @@ namespace SecondSight.Phase2
 				Vector3 direction =
 					_currentObject.position
 					- (_snapPoint != null ? _snapPoint.position : transform.position);
-				if (direction.sqrMagnitude < 0.0001f)
+				if (direction.sqrMagnitude &lt; 0.0001f)
 				{
 					// fallback direction if positions coincide
 					direction = transform.forward;
@@ -271,7 +218,7 @@ namespace SecondSight.Phase2
 		/// It also makes the object ungrabbable while snapped.
 		/// The coroutine is cached so it can be stopped if the object exits the socket before fully snapping.
 		/// </summary>
-		/// <param name="obj"></param>
+		/// <param name="obj"/>
 		/// <returns></returns>
 		private IEnumerator SnapObject(Transform obj)
 		{
@@ -282,7 +229,7 @@ namespace SecondSight.Phase2
 			Quaternion targetRotation = _snapPoint.rotation * Quaternion.Euler(0f, 90f, 0f);
 
 			while (
-				obj != null && Vector3.Distance(obj.position, _snapPoint.position) > k_SnapThreshold
+				obj != null &amp;&amp; Vector3.Distance(obj.position, _snapPoint.position) &gt; k_SnapThreshold
 			)
 			{
 				obj.position = Vector3.Lerp(
@@ -315,14 +262,14 @@ namespace SecondSight.Phase2
 		/// <summary>
 		/// Disable/enable common grab components by name on the object and its children.
 		/// </summary>
-		/// <param name="obj"></param>
-		/// <param name="grabbable"></param>
+		/// <param name="obj"/>
+		/// <param name="grabbable"/>
 		private void SetGrabbable(Transform obj, bool grabbable)
 		{
 			if (obj == null)
 				return;
 
-			Component[] comps = obj.GetComponentsInChildren<Component>(true);
+			Component[] comps = obj.GetComponentsInChildren<component>(true);
 
 			foreach (var comp in comps)
 			{
@@ -351,7 +298,7 @@ namespace SecondSight.Phase2
 		/// </summary>
 		private void DisableSocketCollider()
 		{
-			if (_socketCollider != null && _socketCollider.enabled)
+			if (_socketCollider != null &amp;&amp; _socketCollider.enabled)
 			{
 				_socketCollider.enabled = false;
 				_socketColliderDisabled = true;
@@ -364,7 +311,7 @@ namespace SecondSight.Phase2
 		/// </summary>
 		private void InitializeCollider()
 		{
-			_socketCollider = GetComponent<Collider>();
+			_socketCollider = GetComponent<collider>();
 			_socketColliderDisabled = false;
 			_disabledObjectColliders = null;
 		}
@@ -373,8 +320,8 @@ namespace SecondSight.Phase2
 		/// sets the velocity of the object to zero and disables gravity to prepare it for snapping, and also sets the current object reference and occupied state.
 		/// This is called when an object enters the socket trigger and is valid for snapping.
 		/// </summary>
-		/// <param name="rb"></param>
-		/// <param name="other"></param>
+		/// <param name="rb"/>
+		/// <param name="other"/>
 		private void PrepareObjectForSnapping(Rigidbody rb, Collider other)
 		{
 			if (rb != null)
@@ -398,7 +345,7 @@ namespace SecondSight.Phase2
 		/// checks the state of the socket when an object exits the trigger. If the exiting object is the one currently snapped, it releases it and clears the socket state.
 		/// If it's a different object (e.g., passing through), it ensures that object remains grabbable and doesn't affect the socket's occupied state.
 		/// </summary>
-		/// <param name="other"></param>
+		/// <param name="other"/>
 		private void HandleTriggerExit(Collider other)
 		{
 			// Stop any ongoing snap so it won't resume after exit
@@ -423,50 +370,41 @@ namespace SecondSight.Phase2
 		}
 	}
 }
-</code></pre>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- REVERSE SECTION (optional) -->
-    <h2 class="section-title">Gameplay</h2>
-    <p class="code-description">
+</collider></component></rigidbody></code></pre>
+</div>
+</div>
+</div>
+</div>
+<!-- REVERSE SECTION (optional) -->
+<h2 class="section-title">Gameplay</h2>
+<p class="code-description">
         hier is het algemeen gameplay van de expierence
     </p>
-
-    <div class="code-gif-pair reverse">
-        <div class="col-md-6">
-            <video width="100%" height="auto" controls>
-                <source src="assets/img/portfolio/Playtest.mp4" type="video/mp4">
-            </video>
-        </div>
-
-        <div class="col-md-6">
-            <div id="code2" style="display: none;">
-                <div class="code-block mt-2">
+<div class="code-gif-pair reverse">
+<div class="col-md-6">
+<video controls="" height="auto" width="100%">
+<source src="assets/img/portfolio/Playtest.mp4" type="video/mp4"/>
+</video>
+</div>
+<div class="col-md-6">
+<div id="code2" style="display: none;">
+<div class="code-block mt-2">
 <pre><code>// Your code here</code></pre>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- BTS / EXTRA -->
-    <h2 class="section-title">🎬 Behind the Scenes</h2>
-    <p class="code-description">
+</div>
+</div>
+</div>
+</div>
+<!-- BTS / EXTRA -->
+<h2 class="section-title">🎬 Behind the Scenes</h2>
+<p class="code-description">
        we zijn met dit project door veel hobbels gegaan, het opdrachtgever had een heel abstract idee van 2 fases die wij moesten maken, dus wij hebben 2 fases gemaakt: eentje met de swatches en de sockets hierboven en eentje met de voting game die je ziet in de gameplay. de eerste fase moesten we helaas droppen want we hadden niet genoeg mankracht om alles goed te maken in de korte tijd die we hadden en de tweede fase was meer interesant qua techniek omdat we een arduino gebruikten voor die fase.
     </p>
-
-   
-
-    <!-- Footer -->
-    <footer class="text-center mt-5">
-        <p>© 2026 Youri Wallaart | XR Developer</p>
-        <a href="index.html" class="btn btn-outline-light mt-2">← Back to Portfolio</a>
-    </footer>
-
+<!-- Footer -->
+<footer class="text-center mt-5">
+<p>© 2026 Youri Wallaart | XR Developer</p>
+<a class="btn btn-outline-light mt-2" href="index.html">← Back to Portfolio</a>
+</footer>
 </div>
-
 <!-- Script -->
 <script>
 function toggleCode(id) {
@@ -478,6 +416,5 @@ function toggleCode(id) {
     btn.textContent = isVisible ? "Show Code" : "Hide Code";
 }
 </script>
-
-</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script></body>
 </html>
