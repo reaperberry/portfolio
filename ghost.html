@@ -1,146 +1,84 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GhostDuster Portfolio</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
-  <style>
-    body {
-      background-color: #2c3e50;
-      color: #ecf0f1;
-      font-family: Arial, sans-serif;
-    }
-    .portfolio-title {
-      margin-top: 2rem;
-      text-align: center;
-      text-transform: uppercase;
-      font-weight: bold;
-    }
-    .divider-custom {
-      margin: 1rem auto 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .divider-custom-line {
-      background-color: #ecf0f1;
-      height: 1px;
-      width: 100px;
-    }
-    .divider-custom-icon {
-      color: #ecf0f1;
-      font-size: 24px;
-      margin: 0 10px;
-    }
-    .header-section {
-      background-color: #34495e;
-      padding: 1rem;
-      text-align: center;
-      border-radius: 0.5rem;
-      margin-bottom: 1rem;
-    }
-    .code-video-container {
-      display: flex;
-      flex-direction: row;
-      gap: 2rem;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-    }
-    .code-video-container.reverse {
-      flex-direction: row-reverse;
-    }
-    .code-video-container > div {
-      flex: 1;
-    }
-    pre {
-      background-color: #34495e;
-      padding: 1rem;
-      border-radius: 0.5rem;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      max-width: 100%;
-      color: #ecf0f1;
-    }
-    .btn-sm {
-      background-color: #7f8c8d;
-      color: #ecf0f1;
-    }
-    img, video {
-      width: 100%;
-      border-radius: 0.5rem;
-    }
-    .media-tags span {
-      background-color: #2c3e50;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      padding: 4px 10px;
-      margin-right: 6px;
-      display: inline-block;
-      margin-top: 10px;
-      color: #ecf0f1;
-    }
-    footer {
-      padding: 3rem 1rem 1rem;
-      text-align: center;
-      color: #bdc3c7;
-    }
-    @media (max-width: 768px) {
-      .code-video-container,
-      .code-video-container.reverse {
-        flex-direction: column;
-      }
-    }
-  </style>
-</head>
-<body>
-  <nav class="navbar navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">Back to Main Page</a>
-    </div>
-  </nav>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GhostDuster Portfolio</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
 
-  <div class="container">
-    <h2 class="portfolio-title text-secondary">GhostDuster</h2>
-    <div class="divider-custom">
-      <div class="divider-custom-line"></div>
-      <div class="divider-custom-icon"><i class="fas fa-ghost"></i></div>
-      <div class="divider-custom-line"></div>
-    </div>
+<style>
+:root { --blue:#0d6efd; --bg:#101114; --panel:#191c22; --muted:#aeb8c5; }
+html {scroll-behavior:smooth;}
+body {background:var(--bg)!important; color:#e9edf3!important; font-family:Montserrat,Arial,sans-serif!important; padding-top:70px;}
+.navbar {background:rgba(15,17,21,.96)!important; backdrop-filter:blur(12px);}
+a {text-decoration:none;} a:hover {color:#80b8ff;}
+.project-hero {padding:5rem 0 4rem; background:radial-gradient(circle at 75% 35%,rgba(13,110,253,.25),transparent 35%),linear-gradient(125deg,#101827,#090d15); margin-bottom:3rem;}
+.project-hero .eyebrow {color:#80b8ff;letter-spacing:.2em;font-size:.78rem;font-weight:800;}
+.project-hero h1 {font-size:clamp(3.3rem,9vw,7rem);font-weight:900;letter-spacing:-.055em;line-height:1.03;color:white;}
+.project-hero p {color:#c2ccda;max-width:730px;font-size:1.12rem;line-height:1.7;}
+.section-title, .bts-section h2, main h2:not(.accordion-header), .container>h2:not(.portfolio-title) {color:white!important;font-weight:800!important;border:0!important;padding-left:0!important;margin-top:4rem!important;margin-bottom:1.25rem!important;}
+.section-title::before {content:'';display:block;width:48px;height:4px;background:var(--blue);border-radius:3px;margin-bottom:1rem;}
+.code-description, p, li {color:#c2ccda;line-height:1.75;}
+.header-section, .bts-section, .video-wrapper, .panel {background:var(--panel)!important;color:white!important;border:1px solid #292e38!important;border-radius:18px!important;padding:1.6rem!important;box-shadow:none!important;}
+.header-section {font-weight:700;text-align:left!important;}
+pre,.code-block {background:#11151b!important;color:#bcebd7!important;border:1px solid #343b47!important;border-radius:12px!important;padding:1rem!important;max-width:100%!important;overflow-x:auto!important;white-space:pre!important;}
+pre code {color:inherit;}
+.gif-preview, main img, main video, .video-wrapper video {border:1px solid #39465a!important;border-radius:16px!important;max-width:100%;height:auto;}
+.code-video-container,.code-gif-pair {gap:2rem!important;margin-top:2rem!important;margin-bottom:3rem!important;flex-wrap:wrap!important;}
+.code-video-container>div,.code-gif-pair>div {min-width:0;}
+.btn-outline-info,.toggle-btn {color:#80b8ff!important;border-color:#4274ae!important;}
+.btn-outline-info:hover,.toggle-btn:hover {color:white!important;background:#0d6efd!important;border-color:#0d6efd!important;}
+.btn-danger,.btn-success {background:#0d6efd!important;border-color:#0d6efd!important;}
+.media-tags span,.project-tags span {background:#182b45!important;border:1px solid #355a87!important;color:#c7ddfa!important;}
+.portfolio-title,.divider-custom {display:none!important;}
+.divider-custom-line {background:#355a87!important;}
+.accordion-item,.accordion-button,.accordion-body {background:#191c22!important;color:#e9edf3!important;border-color:#343b47!important;}
+.accordion-button:not(.collapsed) {box-shadow:none!important;color:#80b8ff!important;}
+.text-secondary,.text-muted {color:#aeb8c5!important;}
+footer {background:#17191e!important;color:#9da8b6!important;border-radius:16px;padding:2rem!important;margin-top:4rem!important;}
+@media(max-width:767px) {.project-hero{padding:3.5rem 0 2.5rem;} .code-video-container,.code-gif-pair {flex-direction:column!important;} .code-video-container>div,.code-gif-pair>div {width:100%;flex:auto;} }
+</style></head>
+<body><nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow"><div class="container"><a class="navbar-brand fw-bold" href="index.html">Youri Wallaart</a><button aria-controls="projectNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#projectNav" data-bs-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse justify-content-end" id="projectNav"><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="index.html">Portfolio</a></li><li class="nav-item"><a class="nav-link" href="#project-content">Project</a></li></ul></div></div></nav><header class="project-hero"><div class="container"><div class="eyebrow mb-3">AR GAME · UNITY</div><h1>GhostDuster</h1><p class="mt-4">Project uit mijn XR- en game development portfolio.</p><a class="btn btn-primary btn-lg mt-3" href="#project-content">Bekijk het project <i class="fas fa-arrow-down ms-2"></i></a></div></header>
 
-    <p class="text-center">Ghostduster is een arcade style ghost shooter waar ik onder andere AI en powerups heb geprogrammeerd.</p>
+<div class="container" id="project-content">
 
-    <!-- Game Info -->
-    <div class="code-video-container">
-      <div>
-        <div class="header-section">Over het spel</div>
-        <p>
+<div class="divider-custom">
+<div class="divider-custom-line"></div>
+<div class="divider-custom-icon"><i class="fas fa-ghost"></i></div>
+<div class="divider-custom-line"></div>
+</div>
+<p class="text-center">Ghostduster is een arcade style ghost shooter waar ik onder andere AI en powerups heb geprogrammeerd.</p>
+<!-- Game Info -->
+<div class="code-video-container">
+<div>
+<div class="header-section">Over het spel</div>
+<p>
           GhostDuster is een snelle arcade shooter waar je spoken moet neerschieten met behulp van verschillende powerups.
           Het is gebouwd in Unity met NavMesh en C# scripting.
         </p>
-        <ul>
-          <li><strong>Genre:</strong> Arcade Shooter</li>
-          <li><strong>Engine:</strong> Unity</li>
-          <li><strong>Tools:</strong> C#, NavMesh, ScriptableObjects</li>
-          <li><strong>Platform:</strong> PC</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Section 1: Gameplay (video left) -->
-    <div class="code-video-container">
-      <div>
-        <video controls>
-          <source src="assets/img/portfolio/Ghost_AR.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div>
-        <div class="header-section">Gameplay</div>
-        <p>Ghost arcade shooter gameplay waarin je vijanden neerschiet met verschillende powerups.</p>
-        <div class="media-tags"><span>AI</span><span>gameplay</span><span>Unity</span></div>
-        <div class="collapse mt-2" id="code0">
-          <pre><code>
+<ul>
+<li><strong>Genre:</strong> Arcade Shooter</li>
+<li><strong>Engine:</strong> Unity</li>
+<li><strong>Tools:</strong> C#, NavMesh, ScriptableObjects</li>
+<li><strong>Platform:</strong> PC</li>
+</ul>
+</div>
+</div>
+<!-- Section 1: Gameplay (video left) -->
+<div class="code-video-container">
+<div>
+<video controls="">
+<source src="assets/img/portfolio/Ghost_AR.mp4" type="video/mp4"/>
+</video>
+</div>
+<div>
+<div class="header-section">Gameplay</div>
+<p>Ghost arcade shooter gameplay waarin je vijanden neerschiet met verschillende powerups.</p>
+<div class="media-tags"><span>AI</span><span>gameplay</span><span>Unity</span></div>
+<div class="collapse mt-2" id="code0">
+<pre><code>
 // Example Gameplay Controller snippet
 void Update() {
     if (Input.GetButton("Fire1")) {
@@ -148,22 +86,21 @@ void Update() {
     }
 }
           </code></pre>
-        </div>
-      </div>
-    </div>
-
-    <!-- Section 2: Firerate Powerup (info left) -->
-    <div class="code-video-container reverse">
-      <div>
-        <img src="assets/img/portfolio/fireratebetter.gif" alt="Firerate Powerup">
-      </div>
-      <div>
-        <div class="header-section">Firerate Powerup</div>
-        <p>Voor een beperkte tijd sneller schieten door een powerup op te pakken.</p>
-        <div class="media-tags"><span>powerup</span><span>C#</span></div>
-        <button class="btn btn-sm mt-2" data-bs-toggle="collapse" data-bs-target="#code1">Toon Code</button>
-        <div class="collapse mt-2" id="code1">
-          <pre><code>
+</div>
+</div>
+</div>
+<!-- Section 2: Firerate Powerup (info left) -->
+<div class="code-video-container reverse">
+<div>
+<img alt="Firerate Powerup" src="assets/img/portfolio/fireratebetter.gif"/>
+</div>
+<div>
+<div class="header-section">Firerate Powerup</div>
+<p>Voor een beperkte tijd sneller schieten door een powerup op te pakken.</p>
+<div class="media-tags"><span>powerup</span><span>C#</span></div>
+<button class="btn btn-sm mt-2" data-bs-target="#code1" data-bs-toggle="collapse">Toon Code</button>
+<div class="collapse mt-2" id="code1">
+<pre><code>
 public class FireRatePower : MonoBehaviour {
     public AudioSource Audio;
     public Guns guns;
@@ -172,14 +109,14 @@ public class FireRatePower : MonoBehaviour {
     private BoxCollider boxCollider;
 
     void Start() {
-        guns = FindObjectOfType<Guns>();
+        guns = FindObjectOfType<guns>();
         originalFireRate = guns.fireRate;
-        meshRenderer = GetComponent<MeshRenderer>();
-        boxCollider = GetComponent<BoxCollider>();
+        meshRenderer = GetComponent<meshrenderer>();
+        boxCollider = GetComponent<boxcollider>();
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("powercolid") && guns != null) {
+        if (other.CompareTag("powercolid") &amp;&amp; guns != null) {
             StartCoroutine(ChangeFireRateAndDisable(0.1f, 5f));
             Audio.Play();
             Destroy(gameObject, 7f);
@@ -194,23 +131,22 @@ public class FireRatePower : MonoBehaviour {
         guns.fireRate = originalFireRate;
     }
 }
-          </code></pre>
-        </div>
-      </div>
-    </div>
-
-    <!-- Section 3: Nuke Powerup (video left) -->
-    <div class="code-video-container">
-      <div>
-        <img src="assets/img/portfolio/immafiremanuke.gif" alt="Nuke Powerup">
-      </div>
-      <div>
-        <div class="header-section">Nuke Powerup</div>
-        <p>De nuke vernietigt alle ghosts op het speelveld bij activatie.</p>
-        <div class="media-tags"><span>powerup</span><span>Unity</span></div>
-        <button class="btn btn-sm mt-2" data-bs-toggle="collapse" data-bs-target="#code2">Toon Code</button>
-        <div class="collapse mt-2" id="code2">
-          <pre><code>
+          </boxcollider></meshrenderer></guns></code></pre>
+</div>
+</div>
+</div>
+<!-- Section 3: Nuke Powerup (video left) -->
+<div class="code-video-container">
+<div>
+<img alt="Nuke Powerup" src="assets/img/portfolio/immafiremanuke.gif"/>
+</div>
+<div>
+<div class="header-section">Nuke Powerup</div>
+<p>De nuke vernietigt alle ghosts op het speelveld bij activatie.</p>
+<div class="media-tags"><span>powerup</span><span>Unity</span></div>
+<button class="btn btn-sm mt-2" data-bs-target="#code2" data-bs-toggle="collapse">Toon Code</button>
+<div class="collapse mt-2" id="code2">
+<pre><code>
 public class Nuke : MonoBehaviour {
     public AudioSource Audio;
 
@@ -218,7 +154,7 @@ public class Nuke : MonoBehaviour {
         if (other.CompareTag("powercolid")) {
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
             foreach (GameObject enemy in enemies) {
-                Ghost ghost = enemy.GetComponent<Ghost>();
+                Ghost ghost = enemy.GetComponent<ghost>();
                 if (ghost != null) ghost.GhostDeath();
             }
             Destroy(gameObject, 1f);
@@ -226,23 +162,22 @@ public class Nuke : MonoBehaviour {
         }
     }
 }
-          </code></pre>
-        </div>
-      </div>
-    </div>
-
-    <!-- Section 4: Powerup Spawner (info left) -->
-    <div class="code-video-container reverse">
-      <div>
-        <img src="assets/img/portfolio/powerupspawner.gif" alt="Powerup Spawner">
-      </div>
-      <div>
-        <div class="header-section">Powerup Spawner</div>
-        <p>Spawnt willekeurige powerups zoals health of nuke op vaste intervallen.</p>
-        <div class="media-tags"><span>Spawner</span><span>C#</span></div>
-        <button class="btn btn-sm mt-2" data-bs-toggle="collapse" data-bs-target="#code3">Toon Code</button>
-        <div class="collapse mt-2" id="code3">
-          <pre><code>
+          </ghost></code></pre>
+</div>
+</div>
+</div>
+<!-- Section 4: Powerup Spawner (info left) -->
+<div class="code-video-container reverse">
+<div>
+<img alt="Powerup Spawner" src="assets/img/portfolio/powerupspawner.gif"/>
+</div>
+<div>
+<div class="header-section">Powerup Spawner</div>
+<p>Spawnt willekeurige powerups zoals health of nuke op vaste intervallen.</p>
+<div class="media-tags"><span>Spawner</span><span>C#</span></div>
+<button class="btn btn-sm mt-2" data-bs-target="#code3" data-bs-toggle="collapse">Toon Code</button>
+<div class="collapse mt-2" id="code3">
+<pre><code>
 public class PowerupSpawner : MonoBehaviour {
     public GameObject[] prefabsToSpawn;
     public Transform[] spawnPoints;
@@ -267,30 +202,28 @@ public class PowerupSpawner : MonoBehaviour {
     }
 }
           </code></pre>
-        </div>
-      </div>
-    </div>
+</div>
+</div>
+</div>
 <!-- Section 5: Behind the Scenes -->
-    <div class="code-video-container">
-      <div>
-        <div class="header-section">🔧 Behind the Scenes</div>
-        <p>
+<div class="code-video-container">
+<div>
+<div class="header-section">🔧 Behind the Scenes</div>
+<p>
           Een van de grootste uitdagingen bij dit project was het AR zelf.
           Het was onze eerste keer dat we met AR werkte en we moesten veel leren over hoe AR werkt en hoe we het konden implementeren in Unity.
           We moesten ook heel veel grote keuzes maken over wat we in de game wilden hebben en hoe we het gingen maken.
           We hadden daarom een paar game mechanics weg gedaan zoals dat de headset de kamer zou scannen en de ghosts door de 'muren' zouden breken.
           Uiteindelijk hebben we gekozen voor een simpele arcade shooter met powerups omdat dit het beste werkte met AR en het ook leuk was om te spelen.
         </p>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="text-center mt-5">
-      <p>© 2025 Youri Wallaart | XR Developer</p>
-      <a href="index.html" class="btn btn-outline-light mt-2">← Back to Portfolio</a>
-    </footer>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</div>
+</div>
+<!-- Footer -->
+<footer class="text-center mt-5">
+<p>© 2025 Youri Wallaart | XR Developer</p>
+<a class="btn btn-outline-light mt-2" href="index.html">← Back to Portfolio</a>
+</footer>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,200 +1,135 @@
 <!DOCTYPE html>
+
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NightRacer Portfolio</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
-  <style>
-    body {
-      background-color: #2c3e50;
-      color: #ecf0f1;
-      font-family: Arial, sans-serif;
-    }
-    .portfolio-title {
-      margin-top: 2rem;
-      text-align: center;
-      text-transform: uppercase;
-      font-weight: bold;
-    }
-    .divider-custom {
-      margin: 1rem auto 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .divider-custom-line {
-      background-color: #ecf0f1;
-      height: 1px;
-      width: 100px;
-    }
-    .divider-custom-icon {
-      color: #ecf0f1;
-      font-size: 24px;
-      margin: 0 10px;
-    }
-    .scroll-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.7);
-      color: #ecf0f1;
-      border: none;
-      padding: 10px;
-      cursor: pointer;
-      z-index: 10;
-    }
-    .scroll-left {
-      left: 10px;
-    }
-    .scroll-right {
-      right: 10px;
-    }
-    .photo-reel-container img {
-      height: 200px;
-    }
-    .code-video-container {
-      display: flex;
-      flex-direction: row;
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .code-video-container > div {
-      flex: 1;
-    }
-    .header-section {
-      background-color: #34495e;
-      padding: 1rem;
-      text-align: center;
-      border-radius: 0.5rem;
-      margin-bottom: 1rem;
-    }
-    pre {
-      background-color: #34495e;
-      padding: 1rem;
-      border-radius: 0.5rem;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-      max-width: 600px;
-      margin: auto;
-    }
-    .btn-sm {
-      background-color: #7f8c8d;
-      color: #ecf0f1;
-    }
-    @media (max-width: 768px) {
-      .code-video-container {
-        flex-direction: column;
-      }
-    }
-  </style>
-</head>
-<body>
-  <nav class="navbar navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">Terug naar hoofdpagina</a>
-    </div>
-  </nav>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NightRacer Portfolio</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
 
-  <div class="container">
-    <h2 class="portfolio-title text-secondary">NightRacer</h2>
-    <div class="divider-custom">
-      <div class="divider-custom-line"></div>
-      <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-      <div class="divider-custom-line"></div>
-    </div>
+<style>
+:root { --blue:#0d6efd; --bg:#101114; --panel:#191c22; --muted:#aeb8c5; }
+html {scroll-behavior:smooth;}
+body {background:var(--bg)!important; color:#e9edf3!important; font-family:Montserrat,Arial,sans-serif!important; padding-top:70px;}
+.navbar {background:rgba(15,17,21,.96)!important; backdrop-filter:blur(12px);}
+a {text-decoration:none;} a:hover {color:#80b8ff;}
+.project-hero {padding:5rem 0 4rem; background:radial-gradient(circle at 75% 35%,rgba(13,110,253,.25),transparent 35%),linear-gradient(125deg,#101827,#090d15); margin-bottom:3rem;}
+.project-hero .eyebrow {color:#80b8ff;letter-spacing:.2em;font-size:.78rem;font-weight:800;}
+.project-hero h1 {font-size:clamp(3.3rem,9vw,7rem);font-weight:900;letter-spacing:-.055em;line-height:1.03;color:white;}
+.project-hero p {color:#c2ccda;max-width:730px;font-size:1.12rem;line-height:1.7;}
+.section-title, .bts-section h2, main h2:not(.accordion-header), .container>h2:not(.portfolio-title) {color:white!important;font-weight:800!important;border:0!important;padding-left:0!important;margin-top:4rem!important;margin-bottom:1.25rem!important;}
+.section-title::before {content:'';display:block;width:48px;height:4px;background:var(--blue);border-radius:3px;margin-bottom:1rem;}
+.code-description, p, li {color:#c2ccda;line-height:1.75;}
+.header-section, .bts-section, .video-wrapper, .panel {background:var(--panel)!important;color:white!important;border:1px solid #292e38!important;border-radius:18px!important;padding:1.6rem!important;box-shadow:none!important;}
+.header-section {font-weight:700;text-align:left!important;}
+pre,.code-block {background:#11151b!important;color:#bcebd7!important;border:1px solid #343b47!important;border-radius:12px!important;padding:1rem!important;max-width:100%!important;overflow-x:auto!important;white-space:pre!important;}
+pre code {color:inherit;}
+.gif-preview, main img, main video, .video-wrapper video {border:1px solid #39465a!important;border-radius:16px!important;max-width:100%;height:auto;}
+.code-video-container,.code-gif-pair {gap:2rem!important;margin-top:2rem!important;margin-bottom:3rem!important;flex-wrap:wrap!important;}
+.code-video-container>div,.code-gif-pair>div {min-width:0;}
+.btn-outline-info,.toggle-btn {color:#80b8ff!important;border-color:#4274ae!important;}
+.btn-outline-info:hover,.toggle-btn:hover {color:white!important;background:#0d6efd!important;border-color:#0d6efd!important;}
+.btn-danger,.btn-success {background:#0d6efd!important;border-color:#0d6efd!important;}
+.media-tags span,.project-tags span {background:#182b45!important;border:1px solid #355a87!important;color:#c7ddfa!important;}
+.portfolio-title,.divider-custom {display:none!important;}
+.divider-custom-line {background:#355a87!important;}
+.accordion-item,.accordion-button,.accordion-body {background:#191c22!important;color:#e9edf3!important;border-color:#343b47!important;}
+.accordion-button:not(.collapsed) {box-shadow:none!important;color:#80b8ff!important;}
+.text-secondary,.text-muted {color:#aeb8c5!important;}
+footer {background:#17191e!important;color:#9da8b6!important;border-radius:16px;padding:2rem!important;margin-top:4rem!important;}
+@media(max-width:767px) {.project-hero{padding:3.5rem 0 2.5rem;} .code-video-container,.code-gif-pair {flex-direction:column!important;} .code-video-container>div,.code-gif-pair>div {width:100%;flex:auto;} }
+</style></head>
+<body><nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow"><div class="container"><a class="navbar-brand fw-bold" href="index.html">Youri Wallaart</a><button aria-controls="projectNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#projectNav" data-bs-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse justify-content-end" id="projectNav"><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="index.html">Portfolio</a></li><li class="nav-item"><a class="nav-link" href="#project-content">Project</a></li></ul></div></div></nav><header class="project-hero"><div class="container"><div class="eyebrow mb-3">3D GAME · UNITY</div><h1>NightRacer</h1><p class="mt-4">Project uit mijn XR- en game development portfolio.</p><a class="btn btn-primary btn-lg mt-3" href="#project-content">Bekijk het project <i class="fas fa-arrow-down ms-2"></i></a></div></header>
 
-    <img class="img-fluid rounded mb-4 d-block mx-auto" src="assets/img/portfolio/T_title.png" alt="NightRacer Titel" style="max-width: 100%; height: auto;" />
-    <p class="text-center">Bij <b>NightRacer</b> heb ik vooral gewerkt aan de auto-mechanica en het leaderboard voor de snelste tijden.</p>
+<div class="container" id="project-content">
 
-    <div class="position-relative mb-5">
-      <button class="scroll-btn scroll-left" onclick="scrollReel(-300)">&#10094;</button>
-      <div class="photo-reel-container d-flex overflow-auto gap-3 px-4" id="photoReel">
-        <img src="assets/img/portfolio/catpic.png" alt="NightRacer Screenshot 1" class="img-fluid rounded">
-        <img src="assets/img/portfolio/Catgameplay.png" alt="NightRacer Screenshot 2" class="img-fluid rounded">
-      </div>
-      <button class="scroll-btn scroll-right" onclick="scrollReel(300)">&#10095;</button>
-    </div>
-
-    <div class="code-video-container">
-      <div>
-        <div class="header-section">Projectbeschrijving</div>
-        <pre>
+<div class="divider-custom">
+<div class="divider-custom-line"></div>
+<div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+<div class="divider-custom-line"></div>
+</div>
+<img alt="NightRacer Titel" class="img-fluid rounded mb-4 d-block mx-auto" src="assets/img/portfolio/T_title.png" style="max-width: 100%; height: auto;"/>
+<p class="text-center">Bij <b>NightRacer</b> heb ik vooral gewerkt aan de auto-mechanica en het leaderboard voor de snelste tijden.</p>
+<div class="position-relative mb-5">
+<button class="scroll-btn scroll-left" onclick="scrollReel(-300)">❮</button>
+<div class="photo-reel-container d-flex overflow-auto gap-3 px-4" id="photoReel">
+<img alt="NightRacer Screenshot 1" class="img-fluid rounded" src="assets/img/portfolio/catpic.png"/>
+<img alt="NightRacer Screenshot 2" class="img-fluid rounded" src="assets/img/portfolio/Catgameplay.png"/>
+</div>
+<button class="scroll-btn scroll-right" onclick="scrollReel(300)">❯</button>
+</div>
+<div class="code-video-container">
+<div>
+<div class="header-section">Projectbeschrijving</div>
+<pre>
 <p class="text-center">In dit project heb ik samen met vijf andere studenten in drie weken een racegame ontwikkeld.</p>
         </pre>
-      </div>
-
-      <!-- Eerste video -->
-      <div>
-        <div class="header-section bg-purple">Eerste versie</div>
-        <div class="ratio ratio-16x9">
-          <iframe src="https://www.youtube.com/embed/gTHQZ5cuKXw" title="NightRacer Video" allowfullscreen></iframe>
-        </div>
-        <p class="text-center">Dit is de eerste speelbare versie. Deze werd binnen een week gemaakt als resultaat van onze eerste sprint.</p>
-      </div>
-    </div>
-
-    <!-- Tweede video -->
-    <div class="code-video-container">
-      <div>
-        <div class="header-section bg-purple">Definitieve versie</div>
-        <h3 class="text-center mt-3">Verbeterde gameplay en visuals</h3>
-        <div class="d-flex flex-row align-items-center">
-          <div class="flex-shrink-0" style="flex: 1;">
-            <div class="ratio ratio-16x9">
-              <iframe src="https://www.youtube.com/embed/ILI59qZsEZ4" title="NightRacer Tweede Video" allowfullscreen></iframe>
-            </div>
-          </div>
-          <div class="flex-grow-1 ms-3 p-3" style="flex: 1; background-color: #34495e; border-radius: 1rem; padding-top: 2rem; padding-bottom: 2rem;">
-            <p>Dit is een latere versie van het spel waarin we verbeterde mechanics en visuals hebben toegevoegd. Het laat duidelijk zien hoeveel vooruitgang we hadden geboekt sinds de eerste versie.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Extra informatie -->
-    <div class="code-video-container">
-      <div>
-        <div class="header-section">Gameplay Mechanics</div>
-        <p>
+</div>
+<!-- Eerste video -->
+<div>
+<div class="header-section bg-purple">Eerste versie</div>
+<div class="ratio ratio-16x9">
+<iframe allowfullscreen="" src="https://www.youtube.com/embed/gTHQZ5cuKXw" title="NightRacer Video"></iframe>
+</div>
+<p class="text-center">Dit is de eerste speelbare versie. Deze werd binnen een week gemaakt als resultaat van onze eerste sprint.</p>
+</div>
+</div>
+<!-- Tweede video -->
+<div class="code-video-container">
+<div>
+<div class="header-section bg-purple">Definitieve versie</div>
+<h3 class="text-center mt-3">Verbeterde gameplay en visuals</h3>
+<div class="d-flex flex-row align-items-center">
+<div class="flex-shrink-0" style="flex: 1;">
+<div class="ratio ratio-16x9">
+<iframe allowfullscreen="" src="https://www.youtube.com/embed/ILI59qZsEZ4" title="NightRacer Tweede Video"></iframe>
+</div>
+</div>
+<div class="flex-grow-1 ms-3 p-3" style="flex: 1; background-color: #34495e; border-radius: 1rem; padding-top: 2rem; padding-bottom: 2rem;">
+<p>Dit is een latere versie van het spel waarin we verbeterde mechanics en visuals hebben toegevoegd. Het laat duidelijk zien hoeveel vooruitgang we hadden geboekt sinds de eerste versie.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Extra informatie -->
+<div class="code-video-container">
+<div>
+<div class="header-section">Gameplay Mechanics</div>
+<p>
           NightRacer is een split-screen multiplayer racegame in de ruimte.
         </p>
-        <p>
+<p>
           De voertuigen maken gebruik van Unity’s physics engine, gecombineerd met aangepaste handling scripts die zorgen voor een soepel rijgevoel. Daarnaast gebruikten we colliders en raycasting om botsingen en off-track gedrag correct te verwerken.
         </p>
-      </div>
-
-      <div>
-        <div class="header-section">Teamwork & Workflow</div>
-        <p>
+</div>
+<div>
+<div class="header-section">Teamwork &amp; Workflow</div>
+<p>
           Tijdens het project werkten we met een team van zes studenten. We gebruikten een Trello-bord voor taakverdeling, GitHub voor versiebeheer en hielden wekelijks testsessies om feedback te verzamelen.
         </p>
-        <p>
+<p>
           Mijn focus lag voornamelijk op gameplay-programmeerwerk, terwijl andere teamleden zich richtten op UI, sound design, level art en game design. Dankzij duidelijke communicatie konden we in korte tijd een complete en speelbare ervaring opleveren.
         </p>
-      </div>
-    </div>
-
-    <!-- Code showcase -->
-    <div class="code-video-container">
-      <div>
-        <div class="header-section">Code Showcase</div>
-        <p>Hieronder zie je een voorbeeld van mijn C# script voor voertuigbesturing in Unity:</p>
-
-        <!-- Knop -->
-        <p class="text-center">
-          <button class="btn btn-sm btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#carCodeExample" aria-expanded="false" aria-controls="carCodeExample">
+</div>
+</div>
+<!-- Code showcase -->
+<div class="code-video-container">
+<div>
+<div class="header-section">Code Showcase</div>
+<p>Hieronder zie je een voorbeeld van mijn C# script voor voertuigbesturing in Unity:</p>
+<!-- Knop -->
+<p class="text-center">
+<button aria-controls="carCodeExample" aria-expanded="false" class="btn btn-sm btn-secondary" data-bs-target="#carCodeExample" data-bs-toggle="collapse" type="button">
             Toon Code
           </button>
-        </p>
-
-        <!-- Inklapbare code -->
-        <div class="collapse" id="carCodeExample">
-          <pre><code>
+</p>
+<!-- Inklapbare code -->
+<div class="collapse" id="carCodeExample">
+<pre><code>
 public class CarController : MonoBehaviour {
     private void FixedUpdate() {
-        if (countDownTimer != null && countDownTimer.currentTime <= 0) {
+        if (countDownTimer != null &amp;&amp; countDownTimer.currentTime &lt;= 0) {
             // Get forward/reverse acceleration from vertical axis (W and S)
             currentAcceleration = acceleration * Input.GetAxis(inputNameVertical);
 
@@ -241,32 +176,29 @@ public class CarController : MonoBehaviour {
     }
 }
           </code></pre>
-        </div>
-      </div>
-
-      <div>
-        <div class="header-section">Waarom deze aanpak?</div>
-        <p>
+</div>
+</div>
+<div>
+<div class="header-section">Waarom deze aanpak?</div>
+<p>
           Dit was onze eerste ervaring met voertuigbesturing, daarom kozen we voor een eenvoudige aanpak met Unity’s WheelColliders. Dit maakte het mogelijk om snel realistische physics te implementeren zonder alles vanaf nul te hoeven programmeren.
         </p>
-        <p>
+<p>
           We hebben daarnaast veel geëxperimenteerd met de acceleratie en draaibewegingen van de auto. De car collider zorgde er namelijk voor dat de auto stabiel bleef en niet omviel bij scherpe bochten.
         </p>
-      </div>
-    </div>
-
-    <div class="text-center mt-4">
-      <a href="https://reaper-youri.itch.io/cosmic-cat" target="_blank" class="btn btn-success">
-        <i class="fas fa-gamepad"></i> Speel NightRacer
+</div>
+</div>
+<div class="text-center mt-4">
+<a class="btn btn-success" href="https://reaper-youri.itch.io/cosmic-cat" target="_blank">
+<i class="fas fa-gamepad"></i> Speel NightRacer
       </a>
-    </div>
-  </div>
-
-  <script>
+</div>
+</div>
+<script>
     function scrollReel(amount) {
       document.getElementById('photoReel').scrollLeft += amount;
     }
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>  
+</html> 
