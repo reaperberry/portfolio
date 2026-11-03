@@ -1,108 +1,76 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gigil's Russian Roulette</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gigil's Russian Roulette</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet"/>
 
-  <style>
-    body {
-      background-color: #1e1e2f;
-      color: #f0f0f0;
-      font-family: 'Segoe UI', sans-serif;
-    }
-    .container {
-      max-width: 960px;
-      margin: auto;
-      padding: 2rem;
-    }
-    .project-header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    .project-header img {
-      max-width: 150px;
-      border-radius: 10px;
-    }
-    .video-wrapper {
-      background-color: #2c2c3e;
-      padding: 1rem;
-      border-radius: 10px;
-      margin-bottom: 2rem;
-    }
-    .video-wrapper video {
-      width: 100%;
-      border-radius: 10px;
-    }
-    .accordion-button {
-      background-color: #3a3a4d;
-      color: #fff;
-    }
-    .accordion-body {
-      background-color: #2c2c3e;
-    }
-    pre {
-      background-color: #1e1e2f;
-      color: #00ff99;
-      padding: 1rem;
-      border-radius: 6px;
-      overflow-x: auto;
-    }
-    /* BTS Section */
-    .bts-section {
-      margin-top: 3rem;
-      background-color: #2c2c3e;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-    .bts-section h2 {
-      margin-bottom: 1rem;
-    }
-    .bts-section p {
-      margin-bottom: 1rem;
-      line-height: 1.6;
-    }
-  </style>
-</head>
-<body>
+<style>
+:root { --blue:#0d6efd; --bg:#101114; --panel:#191c22; --muted:#aeb8c5; }
+html {scroll-behavior:smooth;}
+body {background:var(--bg)!important; color:#e9edf3!important; font-family:Montserrat,Arial,sans-serif!important; padding-top:70px;}
+.navbar {background:rgba(15,17,21,.96)!important; backdrop-filter:blur(12px);}
+a {text-decoration:none;} a:hover {color:#80b8ff;}
+.project-hero {padding:5rem 0 4rem; background:radial-gradient(circle at 75% 35%,rgba(13,110,253,.25),transparent 35%),linear-gradient(125deg,#101827,#090d15); margin-bottom:3rem;}
+.project-hero .eyebrow {color:#80b8ff;letter-spacing:.2em;font-size:.78rem;font-weight:800;}
+.project-hero h1 {font-size:clamp(3.3rem,9vw,7rem);font-weight:900;letter-spacing:-.055em;line-height:1.03;color:white;}
+.project-hero p {color:#c2ccda;max-width:730px;font-size:1.12rem;line-height:1.7;}
+.section-title, .bts-section h2, main h2:not(.accordion-header), .container>h2:not(.portfolio-title) {color:white!important;font-weight:800!important;border:0!important;padding-left:0!important;margin-top:4rem!important;margin-bottom:1.25rem!important;}
+.section-title::before {content:'';display:block;width:48px;height:4px;background:var(--blue);border-radius:3px;margin-bottom:1rem;}
+.code-description, p, li {color:#c2ccda;line-height:1.75;}
+.header-section, .bts-section, .video-wrapper, .panel {background:var(--panel)!important;color:white!important;border:1px solid #292e38!important;border-radius:18px!important;padding:1.6rem!important;box-shadow:none!important;}
+.header-section {font-weight:700;text-align:left!important;}
+pre,.code-block {background:#11151b!important;color:#bcebd7!important;border:1px solid #343b47!important;border-radius:12px!important;padding:1rem!important;max-width:100%!important;overflow-x:auto!important;white-space:pre!important;}
+pre code {color:inherit;}
+.gif-preview, main img, main video, .video-wrapper video {border:1px solid #39465a!important;border-radius:16px!important;max-width:100%;height:auto;}
+.code-video-container,.code-gif-pair {gap:2rem!important;margin-top:2rem!important;margin-bottom:3rem!important;flex-wrap:wrap!important;}
+.code-video-container>div,.code-gif-pair>div {min-width:0;}
+.btn-outline-info,.toggle-btn {color:#80b8ff!important;border-color:#4274ae!important;}
+.btn-outline-info:hover,.toggle-btn:hover {color:white!important;background:#0d6efd!important;border-color:#0d6efd!important;}
+.btn-danger,.btn-success {background:#0d6efd!important;border-color:#0d6efd!important;}
+.media-tags span,.project-tags span {background:#182b45!important;border:1px solid #355a87!important;color:#c7ddfa!important;}
+.portfolio-title,.divider-custom {display:none!important;}
+.divider-custom-line {background:#355a87!important;}
+.accordion-item,.accordion-button,.accordion-body {background:#191c22!important;color:#e9edf3!important;border-color:#343b47!important;}
+.accordion-button:not(.collapsed) {box-shadow:none!important;color:#80b8ff!important;}
+.text-secondary,.text-muted {color:#aeb8c5!important;}
+footer {background:#17191e!important;color:#9da8b6!important;border-radius:16px;padding:2rem!important;margin-top:4rem!important;}
+@media(max-width:767px) {.project-hero{padding:3.5rem 0 2.5rem;} .code-video-container,.code-gif-pair {flex-direction:column!important;} .code-video-container>div,.code-gif-pair>div {width:100%;flex:auto;} }
+</style></head>
+<body><nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow"><div class="container"><a class="navbar-brand fw-bold" href="index.html">Youri Wallaart</a><button aria-controls="projectNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#projectNav" data-bs-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse justify-content-end" id="projectNav"><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="index.html">Portfolio</a></li><li class="nav-item"><a class="nav-link" href="#project-content">Project</a></li></ul></div></div></nav><header class="project-hero"><div class="container"><div class="eyebrow mb-3">GAME PROJECT</div><h1>Gigil’s Russian Roulette</h1><p class="mt-4">Project uit mijn XR- en game development portfolio.</p><a class="btn btn-primary btn-lg mt-3" href="#project-content">Bekijk het project <i class="fas fa-arrow-down ms-2"></i></a></div></header>
+<div class="container" id="project-content">
+<!-- Header -->
+<div class="project-header">
+<img alt="Gigil Logo" src="assets/img/portfolio/Gigil.png"/>
 
-  <div class="container">
-    <!-- Header -->
-    <div class="project-header">
-      <img src="assets/img/portfolio/Gigil.png" alt="Gigil Logo" />
-      <h1 class="mt-3">Gigil's Russian Roulette</h1>
-      <p class="lead text-muted">Een gamejam game over snelheid, spanning, en russische roulette.</p>
-    </div>
-
-    <!-- Video Showcase -->
-    <div class="video-wrapper">
-      <video src="assets/img/portfolio/gigilsdeath.mp4" controls></video>
-    </div>
-
-    <!-- Project Info -->
-    <div class="mb-4">
-      <h2>Projectinformatie</h2>
-      <p>Dit is mijn gamejam game die ik met een paar andere klasgenoten heb gemaakt.</p>
-      <p>We hadden 8 weken en het moest speelbaar zijn via WebGL op itch.io. Het thema was <em>"instantly hooked"</em>, dus we dachten aan een snelle Russian Roulette game waarin de speler direct op scherp staat.</p>
-    </div>
-
-    <!-- Code Examples -->
-    <h2 class="mb-3">Belangrijke Code Voorbeelden</h2>
-    <div class="accordion" id="codeAccordion">
-
-      <!-- Gun Firing Logic -->
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingOne">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#codeOne">
+<p class="lead text-muted">Een gamejam game over snelheid, spanning, en russische roulette.</p>
+</div>
+<!-- Video Showcase -->
+<div class="video-wrapper">
+<video controls="" src="assets/img/portfolio/gigilsdeath.mp4"></video>
+</div>
+<!-- Project Info -->
+<div class="mb-4">
+<h2>Projectinformatie</h2>
+<p>Dit is mijn gamejam game die ik met een paar andere klasgenoten heb gemaakt.</p>
+<p>We hadden 8 weken en het moest speelbaar zijn via WebGL op itch.io. Het thema was <em>"instantly hooked"</em>, dus we dachten aan een snelle Russian Roulette game waarin de speler direct op scherp staat.</p>
+</div>
+<!-- Code Examples -->
+<h2 class="mb-3">Belangrijke Code Voorbeelden</h2>
+<div class="accordion" id="codeAccordion">
+<!-- Gun Firing Logic -->
+<div class="accordion-item">
+<h2 class="accordion-header" id="headingOne">
+<button class="accordion-button collapsed" data-bs-target="#codeOne" data-bs-toggle="collapse" type="button">
             Vuurmechaniek Revolver
           </button>
-        </h2>
-        <div id="codeOne" class="accordion-collapse collapse" data-bs-parent="#codeAccordion">
-          <div class="accordion-body">
-            <pre><code>public void PullTrigger()
+</h2>
+<div class="accordion-collapse collapse" data-bs-parent="#codeAccordion" id="codeOne">
+<div class="accordion-body">
+<pre><code>public void PullTrigger()
 {
     if (chamber[currentChamber] == true)
     {
@@ -116,20 +84,19 @@
 
     currentChamber = (currentChamber + 1) % 6;
 }</code></pre>
-          </div>
-        </div>
-      </div>
-
-      <!-- UI Shake Feedback -->
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingTwo">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#codeTwo">
+</div>
+</div>
+</div>
+<!-- UI Shake Feedback -->
+<div class="accordion-item">
+<h2 class="accordion-header" id="headingTwo">
+<button class="accordion-button collapsed" data-bs-target="#codeTwo" data-bs-toggle="collapse" type="button">
             UI Shake bij Spanning
           </button>
-        </h2>
-        <div id="codeTwo" class="accordion-collapse collapse" data-bs-parent="#codeAccordion">
-          <div class="accordion-body">
-            <pre><code>IEnumerator ShakeUI()
+</h2>
+<div class="accordion-collapse collapse" data-bs-parent="#codeAccordion" id="codeTwo">
+<div class="accordion-body">
+<pre><code>IEnumerator ShakeUI()
 {
     Vector3 originalPos = uiElement.localPosition;
     float elapsed = 0f;
@@ -147,30 +114,26 @@
 
     uiElement.localPosition = originalPos;
 }</code></pre>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- BTS Section (Text Only) -->
-    <div class="bts-section">
-      <h2>Behind The Scenes</h2>
-      <p>wij hebben veel problemen gehad met de turn system omdat de tegenstander nooit zijn turn kreeg.
+</div>
+</div>
+</div>
+</div>
+<!-- BTS Section (Text Only) -->
+<div class="bts-section">
+<h2>Behind The Scenes</h2>
+<p>wij hebben veel problemen gehad met de turn system omdat de tegenstander nooit zijn turn kreeg.
       We hebben dit opgelost door een coroutine te gebruiken die de beurt van de tegenstander na een korte vertraging activeert.
       Ook hadden we problemen met de UI die niet goed schudde bij spanning, dit hebben we opgelost door een aparte functie te maken die de UI element tijdelijk verplaatst.
       </p>
-    </div>
-
-    <!-- Play Now Button -->
-    <div class="text-center mt-5">
-      <a href="https://gorott.itch.io/gigils-russian-roulete" target="_blank" class="btn btn-success btn-lg">
-        <i class="fas fa-play me-2"></i>Speel Gigil's Russian Roulette
+</div>
+<!-- Play Now Button -->
+<div class="text-center mt-5">
+<a class="btn btn-success btn-lg" href="https://gorott.itch.io/gigils-russian-roulete" target="_blank">
+<i class="fas fa-play me-2"></i>Speel Gigil's Russian Roulette
       </a>
-    </div>
-  </div>
-
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+</div>
+</div>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
