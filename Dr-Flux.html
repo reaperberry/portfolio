@@ -1,15 +1,16 @@
 <!DOCTYPE html>
+
 <html lang="nl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Dr. Flux — een XR Lab-project gepresenteerd bij Cinekid 2026 als onderdeel van De Planeetpoort.">
-  <title>Dr. Flux | Youri Wallaart</title>
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Dr. Flux — een XR Lab-project gepresenteerd bij Cinekid 2026 als onderdeel van De Planeetpoort." name="description"/>
+<title>Dr. Flux | Youri Wallaart</title>
+<link href="assets/favicon.ico" rel="icon" type="image/x-icon"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script crossorigin="anonymous" src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"></script>
+<style>
     :root { --blue:#0d6efd; --bg:#101114; --panel:#191c22; --muted:#aeb8c5; }
     html { scroll-behavior:smooth; }
     body { background:var(--bg); color:#e9edf3; font-family:Montserrat,Arial,sans-serif; padding-top:70px; }
@@ -31,53 +32,54 @@
     .award { background:linear-gradient(110deg,#132b49,#1a202b); border:1px solid #315783; border-radius:18px; padding:2rem; }
     footer { background:#17191e; padding:2rem 0; color:#9da8b6; }
     a { text-decoration:none; }
-  </style>
+  
+    .gallery-photo { width:100%; height:100%; max-height:440px; object-fit:cover; border-radius:15px; border:1px solid #343b47; transition:transform .2s ease; }
+    .gallery-photo:hover { transform:scale(1.015); }
+    .gallery-figure { margin:0; height:100%; background:var(--panel); border-radius:16px; overflow:hidden; }
+    .gallery-figure figcaption { color:#b9c6d6; padding: .85rem 1rem; font-size:.92rem; }
+    .hero-image { object-position:center 38%; }
+</style>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow">
-  <div class="container"><a class="navbar-brand fw-bold" href="index.html">Youri Wallaart</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
-    <div class="collapse navbar-collapse justify-content-end" id="nav"><ul class="navbar-nav">
-      <li class="nav-item"><a class="nav-link" href="index.html">Portfolio</a></li>
-      <li class="nav-item"><a class="nav-link" href="#over">Over Dr. Flux</a></li>
-      <li class="nav-item"><a class="nav-link" href="#galerij">Galerij</a></li>
-      <li class="nav-item"><a class="nav-link" href="#bijdrage">Mijn bijdrage</a></li>
-    </ul></div>
-  </div>
+<div class="container"><a class="navbar-brand fw-bold" href="index.html">Youri Wallaart</a>
+<button class="navbar-toggler" data-bs-target="#nav" data-bs-toggle="collapse" type="button"><span class="navbar-toggler-icon"></span></button>
+<div class="collapse navbar-collapse justify-content-end" id="nav"><ul class="navbar-nav">
+<li class="nav-item"><a class="nav-link" href="index.html">Portfolio</a></li>
+<li class="nav-item"><a class="nav-link" href="#over">Over Dr. Flux</a></li>
+<li class="nav-item"><a class="nav-link" href="#galerij">Galerij</a></li>
+<li class="nav-item"><a class="nav-link" href="#bijdrage">Mijn bijdrage</a></li>
+</ul></div>
+</div>
 </nav>
 <header class="hero">
-  <div class="container py-5"><div class="row align-items-center g-5">
-    <div class="col-lg-6"><div class="eyebrow mb-3">XR LAB · CINEKID MEDIALAB · 2026</div>
-      <h1>DR.<br><span class="text-primary">FLUX</span></h1>
-      <p class="mt-4">Een XR-project waar ik aan heb meegewerkt bij XR Lab, gepresenteerd als onderdeel van De Planeetpoort tijdens Cinekid MediaLab.</p>
-      <div class="mb-4"><span class="tag">XR</span><span class="tag">Teamproject</span><span class="tag">Cinekid</span><span class="tag">XR Lab</span></div>
-      <a href="#over" class="btn btn-primary btn-lg px-4">Bekijk het project <i class="fas fa-arrow-down ms-2"></i></a>
-    </div>
-    <div class="col-lg-6"><img class="hero-image" src="assets/img/portfolio/dr-flux-hero.jpg" alt="Dr. Flux bij Cinekid" onerror="this.outerHTML='<div class=&quot;gallery-placeholder&quot;><i class=&quot;fas fa-image fa-3x mb-3&quot;></i><h3>Dr. Flux hero-afbeelding</h3><p class=&quot;mb-0&quot;>Plaats hier assets/img/portfolio/dr-flux-hero.jpg</p></div>'"></div>
-  </div></div>
+<div class="container py-5"><div class="row align-items-center g-5">
+<div class="col-lg-6"><div class="eyebrow mb-3">XR LAB · CINEKID MEDIALAB · 2026</div>
+<h1>DR.<br/><span class="text-primary">FLUX</span></h1>
+<p class="mt-4">Een XR-project waar ik aan heb meegewerkt bij XR Lab, gepresenteerd als onderdeel van De Planeetpoort tijdens Cinekid MediaLab.</p>
+<div class="mb-4"><span class="tag">XR</span><span class="tag">Teamproject</span><span class="tag">Cinekid</span><span class="tag">XR Lab</span></div>
+<a class="btn btn-primary btn-lg px-4" href="#over">Bekijk het project <i class="fas fa-arrow-down ms-2"></i></a>
+</div>
+<div class="col-lg-6"><img alt="Bezoekers ervaren De Planeetpoort met VR-headsets en interactieve knoppen" class="hero-image" src="assets/img/portfolio/playtestmetkinderen.jpeg"/></div>
+</div></div>
 </header>
 <main>
 <section class="section" id="over"><div class="container"><div class="row g-5 align-items-start">
-  <div class="col-lg-7"><div class="eyebrow mb-2">HET PROJECT</div><h2 class="section-title display-5">Een onderdeel van De Planeetpoort</h2>
-    <p class="muted">Dr. Flux is het project waaraan ik bij XR Lab heb meegewerkt. Het werd gepresenteerd binnen De Planeetpoort op Cinekid MediaLab. De Planeetpoort is een gezamenlijke installatie waarin jonge makers uit verschillende disciplines samenwerkten aan een fysieke en virtuele ervaring.</p>
-    <p class="muted">Volgens de XR Lab-publicatie is De Planeetpoort gemaakt door meer dan veertig jonge makers. Het project bracht onder andere game development, game art, game design en ruimtelijke vormgeving samen.</p>
-  </div>
-  <div class="col-lg-5"><div class="award"><div class="feature-icon"><i class="fas fa-award"></i></div><div class="eyebrow mb-2">CINEKID MEDIALAB</div><h3 class="text-white">Publieksprijs 2026</h3><p class="muted mb-0">XR Lab won voor het tweede jaar op rij de Cinekid MediaLab-publieksprijs, dit jaar met De Planeetpoort.</p></div></div>
+<div class="col-lg-7"><div class="eyebrow mb-2">HET PROJECT</div><h2 class="section-title display-5">Een onderdeel van De Planeetpoort</h2>
+<p class="muted">Dr. Flux is het project waaraan ik bij XR Lab heb meegewerkt. Het werd gepresenteerd binnen De Planeetpoort op Cinekid MediaLab. De Planeetpoort is een gezamenlijke installatie waarin jonge makers uit verschillende disciplines samenwerkten aan een fysieke en virtuele ervaring.</p>
+<p class="muted">Volgens de XR Lab-publicatie is De Planeetpoort gemaakt door meer dan veertig jonge makers. Het project bracht onder andere game development, game art, game design en ruimtelijke vormgeving samen.</p>
+</div>
+<div class="col-lg-5"><div class="award"><div class="feature-icon"><i class="fas fa-award"></i></div><div class="eyebrow mb-2">CINEKID MEDIALAB</div><h3 class="text-white">Publieksprijs 2026</h3><p class="muted mb-0">XR Lab won voor het tweede jaar op rij de Cinekid MediaLab-publieksprijs, dit jaar met De Planeetpoort.</p></div></div>
 </div></div></section>
-<section class="section pt-0" id="galerij"><div class="container"><div class="eyebrow mb-2">IN BEELD</div><h2 class="section-title display-5">Dr. Flux bij Cinekid</h2><p class="muted mb-4">Vervang de voorbeeldvakken hieronder door foto's uit de XR Lab LinkedIn-post. Gebruik uitsluitend beelden van Dr. Flux en De Planeetpoort.</p>
-  <div class="row g-4">
-    <div class="col-md-6"><div class="gallery-placeholder"><i class="fas fa-image fa-2x mb-3"></i><strong>Dr. Flux / installatie</strong><span class="small mt-2">dr-flux-installation.jpg</span></div></div>
-    <div class="col-md-6"><div class="gallery-placeholder"><i class="fas fa-image fa-2x mb-3"></i><strong>Dr. Flux / gameplay</strong><span class="small mt-2">dr-flux-gameplay.jpg</span></div></div>
-    <div class="col-md-6"><div class="gallery-placeholder"><i class="fas fa-image fa-2x mb-3"></i><strong>De Planeetpoort</strong><span class="small mt-2">dr-flux-planetpoort.jpg</span></div></div>
-    <div class="col-md-6"><div class="gallery-placeholder"><i class="fas fa-image fa-2x mb-3"></i><strong>Project in context</strong><span class="small mt-2">dr-flux-cinekid.jpg</span></div></div>
-  </div>
+<section class="section pt-0" id="galerij"><div class="container"><div class="eyebrow mb-2">IN BEELD</div><h2 class="section-title display-5">Dr. Flux bij Cinekid</h2><p class="muted mb-4">Foto’s van De Planeetpoort tijdens Cinekid MediaLab: bezoekers, de VR-installatie en de uitreiking van de publieksprijs.</p>
+<div class="row g-4"><div class="col-md-6"><figure class="gallery-figure"><img alt="Bezoekers testen de VR-ervaring met de interactieve knoppen." class="gallery-photo" loading="lazy" src="assets/img/portfolio/playtest.jpeg"/><figcaption>Bezoekers testen de VR-ervaring met de interactieve knoppen.</figcaption></figure></div><div class="col-md-6"><figure class="gallery-figure"><img alt="Het informatiebord bij de ingang van De Planeetpoort." class="gallery-photo" loading="lazy" src="assets/img/portfolio/boorduitgezoomed.jpeg"/><figcaption>Het informatiebord bij de ingang van De Planeetpoort.</figcaption></figure></div><div class="col-md-6"><figure class="gallery-figure"><img alt="Het informatiebord met uitleg over de VR-ruimtereis." class="gallery-photo" loading="lazy" src="assets/img/portfolio/planeetpoortbord.jpeg"/><figcaption>Het informatiebord met uitleg over de VR-ruimtereis.</figcaption></figure></div><div class="col-md-6"><figure class="gallery-figure"><img alt="De Planeetpoort van XR Lab wint de publieksprijs." class="gallery-photo" loading="lazy" src="assets/img/portfolio/award.jpeg"/><figcaption>De Planeetpoort van XR Lab wint de publieksprijs.</figcaption></figure></div><div class="col-md-6"><figure class="gallery-figure"><img alt="Bezoekers spelen samen in de VR-installatie." class="gallery-photo" loading="lazy" src="assets/img/portfolio/playtestmetkinderen.jpeg"/><figcaption>Bezoekers spelen samen in de VR-installatie.</figcaption></figure></div></div>
 </div></section>
 <section class="section pt-0" id="bijdrage"><div class="container"><div class="eyebrow mb-2">MIJN ROL</div><h2 class="section-title display-5">Mijn bijdrage aan Dr. Flux</h2>
-  <div class="row g-4"><div class="col-lg-8"><p class="muted">Ik heb aan Dr. Flux gewerkt als onderdeel van het XR Lab-team. Op deze pagina wil ik mijn eigen bijdrage duidelijk laten zien, naast het gezamenlijke resultaat van het team.</p><p class="muted">De concrete programmeer-, ontwerp- en ontwikkeltaken vul ik hier nog aan, zodat de beschrijving precies weergeeft wat ik zelf heb gemaakt.</p></div>
-  <div class="col-lg-4"><div class="panel"><div class="feature-icon"><i class="fas fa-code"></i></div><h5 class="text-white">Technische details</h5><p class="muted mb-0">Tools, software, interacties en programmeerwerk worden hier toegevoegd zodra de exacte onderdelen zijn ingevuld.</p></div></div></div>
+<div class="row g-4"><div class="col-lg-8"><p class="muted">Ik heb aan Dr. Flux gewerkt als onderdeel van het XR Lab-team. Op deze pagina wil ik mijn eigen bijdrage duidelijk laten zien, naast het gezamenlijke resultaat van het team.</p><p class="muted">De concrete programmeer-, ontwerp- en ontwikkeltaken vul ik hier nog aan, zodat de beschrijving precies weergeeft wat ik zelf heb gemaakt.</p></div>
+<div class="col-lg-4"><div class="panel"><div class="feature-icon"><i class="fas fa-code"></i></div><h5 class="text-white">Technische details</h5><p class="muted mb-0">Tools, software, interacties en programmeerwerk worden hier toegevoegd zodra de exacte onderdelen zijn ingevuld.</p></div></div></div>
 </div></section>
-<section class="section pt-0"><div class="container"><div class="panel d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3"><div><div class="eyebrow mb-2">MEER OVER HET PROJECT</div><h3 class="text-white mb-1">XR Lab op LinkedIn</h3><p class="muted mb-0">Bekijk de oorspronkelijke post over de Cinekid MediaLab-publieksprijs en De Planeetpoort.</p></div><a class="btn btn-outline-light" href="https://www.linkedin.com/posts/xrlab_voor-het-tweede-jaar-op-rij-hebben-we-met-activity-7516082104699518976-9OAX" target="_blank" rel="noopener">Bekijk LinkedIn-post <i class="fas fa-external-link-alt ms-2"></i></a></div></div></section>
+<section class="section pt-0"><div class="container"><div class="panel d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3"><div><div class="eyebrow mb-2">MEER OVER HET PROJECT</div><h3 class="text-white mb-1">XR Lab op LinkedIn</h3><p class="muted mb-0">Bekijk de oorspronkelijke post over de Cinekid MediaLab-publieksprijs en De Planeetpoort.</p></div><a class="btn btn-outline-light" href="https://www.linkedin.com/posts/xrlab_voor-het-tweede-jaar-op-rij-hebben-we-met-activity-7516082104699518976-9OAX" rel="noopener" target="_blank">Bekijk LinkedIn-post <i class="fas fa-external-link-alt ms-2"></i></a></div></div></section>
 </main>
-<footer><div class="container d-flex flex-column flex-md-row justify-content-between gap-2"><span>© 2026 Youri Wallaart</span><a href="index.html" class="text-light">Terug naar portfolio ↑</a></div></footer>
+<footer><div class="container d-flex flex-column flex-md-row justify-content-between gap-2"><span>© 2026 Youri Wallaart</span><a class="text-light" href="index.html">Terug naar portfolio ↑</a></div></footer>
 </body>
 </html>
